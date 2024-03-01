@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Employee
+ <form method="post" enctype="multipart/form-data">
+    <label asp-for="Name"></label><br />
+    <input asp-for="Name" class="form-control"/>
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br /><br />
+    <label asp-for="Email"></label><br />
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span><br /><br />
+    <label asp-for="Phone"></label><br />
+    <input asp-for="Phone" class="form-control" /><br /><br />
+
+    <label asp-for="Address"></label><br />
+    <input asp-for="Address" class="form-control" />
+    <span asp-validation-for="Address" class="text-danger"></span><br /><br />
+    <div>
+        <label asp-for="Dept_id"></label>
+        <select asp-for="Dept_id" class="form-control" asp-items="@ViewBag.DeptList">
+        </select>
+        <span asp-validation-for="Dept_id" class="text-danger"></span>
+    </div>
+   
+    <br />
+    <div>
+        <input type="file" asp-for="clientfile" onchange="load(event);" />
+        <img id="myimg" height="100" />
+
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Back To Employees</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script>
+        var load = function (event) {
+            var reader = new FileReader();
+            reader.onload = function (){
+                document.getElementById("myimg").src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}
+

@@ -1,0 +1,28 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h1>Delete Employee</h1>
+ <form method="post" asp-action="Delete">
+    <input asp-for="Id" hidden />
+    <label asp-for="Name"></label><br />
+    <input asp-for="Name" disabled class="form-control"/><br/><br />
+    <label asp-for="Email"></label><br />
+    <input asp-for="Email" disabled class="form-control" /><br /><br />
+    <label asp-for="Phone"></label><br />
+    <input asp-for="Phone" disabled class="form-control" /><br /><br />
+    <label asp-for="Address"></label><br />
+    <input asp-for="Address" disabled class="form-control" /><br /><br />
+    <div>
+        <label asp-for="Dept_id"></label>
+        <select asp-for="Dept_id" disabled class="form-control" asp-items="@ViewBag.DeptList">
+        </select>
+        <span asp-validation-for="Dept_id" class="text-danger"></span>
+    </div>
+    <br />
+    <br />
+    <button type="submit"class="btn btn-primary">Delete</button>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Back To Employees</a>
+</form>

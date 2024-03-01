@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<partial name="_Notification" />
+
+<h1>Hello</h1>
+<table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Department Name</th>
+      <th>Details</th>
+      
+        <th></th>
+   </tr>
+    
+   @foreach(Employee employee in Model){
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.Name</td>
+            <td>@employee.Email</td>
+            <td>@employee.Phone</td>
+            <td>@employee.Department.Dept_Name</td>
+            <td><a href="/Employee/Details/@employee.Id">Details</a></td>
+
+
+
+
+            <td><a asp-controller="Employee" asp-action="Edit" asp-route-Id="@employee.Id" class="btn-group-sm"> <i class="fa-solid fa-pen-to-square"></i> </a></td>
+            <td><a asp-controller="Employee" asp-action="Delete" asp-route-Id="@employee.Id" class="btn-group-sm"><i class="fa-solid fa-trash"></i></a></td>
+
+        </tr>
+    }
+    
+</table>
+<br /><br/>
+<a asp-controller="Employee" asp-action="New" class="btn btn-primary">Add New Employee</a>
